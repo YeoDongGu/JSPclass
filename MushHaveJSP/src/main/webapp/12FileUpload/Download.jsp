@@ -26,8 +26,9 @@ try {
 	response.setHeader("Content-Disposition", "attachment; filename=\"" + originalFilename + "\"");
 	response.setHeader("Content-Length", "" + file.length());
 
-	//출력 스트림 초기화
+	//서블릿에서 기본적으로 생성하는 out 객체와 충돌이 일어나기 때문에 스트림 초기화
 	out.clear();
+	out=pageContext.pushBody();
 
 	//response 내장 객체로부터 새로운 출력 스트림 생성
 	OutputStream outStream = response.getOutputStream();
